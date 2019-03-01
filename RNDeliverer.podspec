@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.framework    = 'UIKit'
   s.requires_arc = true
 
-  s.source = { :git => "https://github.com/DylanVann/react-native-fast-image.git" }
+  s.source = { :git => "https://github.com/appssemble/RNDeliverer.git" }
   s.source_files = "ios/*.{h,m,swift}"
 
   s.dependency 'React'
