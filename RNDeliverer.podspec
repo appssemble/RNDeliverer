@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
 
   s.source = { :git => "https://github.com/appssemble/RNDeliverer.git" }
   s.source_files = "ios/*.{h,m,swift}"
+  s.static_framework = true
 
   s.dependency 'React'
   s.dependency 'Deliverer'
