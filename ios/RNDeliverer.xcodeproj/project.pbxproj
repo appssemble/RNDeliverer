@@ -255,7 +255,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					/Users/razvanchelemen/Desktop/native/AwesomeProject/ios,
+					"$(PROJECT_DIR)/../Example/AwesomeProject/ios",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -269,7 +269,7 @@
 				PRODUCT_NAME = RNDeliverer;
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "../../Deliverer/ios/RNDeliverer-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "./RNDeliverer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 			};
@@ -282,7 +282,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					/Users/razvanchelemen/Desktop/native/AwesomeProject/ios,
+					"$(PROJECT_DIR)/../Example/AwesomeProject/ios",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -296,7 +296,7 @@
 				PRODUCT_NAME = RNDeliverer;
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "../../Deliverer/ios/RNDeliverer-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "./RNDeliverer-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
