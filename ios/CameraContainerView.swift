@@ -14,7 +14,7 @@ import Deliverer
     init() {
         super.init(frame: .zero)
         
-        DelivererManager.shared.createCameraInput()
+        try? DelivererManager.shared.createCameraInput()
         if let cameraInput = DelivererManager.shared.cameraInput {
             addSubview(cameraInput.cameraView)
         }

@@ -10,6 +10,8 @@
 		74169FBE222D32510046A94B /* RNCameraViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 74169FBD222D32510046A94B /* RNCameraViewManager.m */; };
 		7416A236222E8B800046A94B /* CameraContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416A235222E8B800046A94B /* CameraContainerView.swift */; };
 		7416A238222EA70E0046A94B /* DelivererManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416A237222EA70E0046A94B /* DelivererManager.swift */; };
+		747E92F8222F9BC400DFEE17 /* RNDCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E92F7222F9BC400DFEE17 /* RNDCamera.swift */; };
+		747E92FB222F9BDE00DFEE17 /* RNDCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 747E92FA222F9BDE00DFEE17 /* RNDCamera.m */; };
 		7480EB3122280641005BF561 /* RNDeliverer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7480EB3022280641005BF561 /* RNDeliverer.m */; };
 		7480EB332228098E005BF561 /* RNDeliverer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7480EB322228098E005BF561 /* RNDeliverer.swift */; };
 /* End PBXBuildFile section */
@@ -33,6 +35,8 @@
 		7416A21B222E707A0046A94B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7416A235222E8B800046A94B /* CameraContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraContainerView.swift; sourceTree = "<group>"; };
 		7416A237222EA70E0046A94B /* DelivererManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelivererManager.swift; sourceTree = "<group>"; };
+		747E92F7222F9BC400DFEE17 /* RNDCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNDCamera.swift; sourceTree = "<group>"; };
+		747E92FA222F9BDE00DFEE17 /* RNDCamera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNDCamera.m; sourceTree = "<group>"; };
 		7480EB1C2227D9A3005BF561 /* RNDeliverer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNDeliverer-Bridging-Header.h"; sourceTree = "<group>"; };
 		7480EB3022280641005BF561 /* RNDeliverer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNDeliverer.m; sourceTree = "<group>"; };
 		7480EB322228098E005BF561 /* RNDeliverer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNDeliverer.swift; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				747E92FA222F9BDE00DFEE17 /* RNDCamera.m */,
+				747E92F7222F9BC400DFEE17 /* RNDCamera.swift */,
 				7416A237222EA70E0046A94B /* DelivererManager.swift */,
 				7416A235222E8B800046A94B /* CameraContainerView.swift */,
 				74169FBD222D32510046A94B /* RNCameraViewManager.m */,
@@ -141,7 +147,9 @@
 				74169FBE222D32510046A94B /* RNCameraViewManager.m in Sources */,
 				7480EB3122280641005BF561 /* RNDeliverer.m in Sources */,
 				7416A236222E8B800046A94B /* CameraContainerView.swift in Sources */,
+				747E92F8222F9BC400DFEE17 /* RNDCamera.swift in Sources */,
 				7416A238222EA70E0046A94B /* DelivererManager.swift in Sources */,
+				747E92FB222F9BDE00DFEE17 /* RNDCamera.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

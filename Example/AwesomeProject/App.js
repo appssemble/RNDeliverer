@@ -14,13 +14,27 @@ import { requireNativeComponent } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 
 var RNDeliverer = NativeModules.RNDeliverer;
-RNDeliverer.addEvent('Birthday Party', '4 Privet Drive, Surrey');
-RNDeliverer.setupStreamer()
-RNDeliverer.startCamera()
-RNDeliverer.addStreamingEndpoint('rtmp://192.168.0.64:1935/live/test')
+var RNDCamera = NativeModules.RNDCamera;
+
+RNDeliverer.setupStreamer((error) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('Successfully configured');
+  }
+});
+
+RNDCamera.startCamera()
+RNDeliverer.addStreamingEndpoint('rtmp://a.rtmp.youtube.com/live2/1jhu-vp8x-p1u8-axev', (error) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('Successfully added the streaming endpoint');
+  }
+});
 RNDeliverer.startEncoding()
 
-const RNCameraView = requireNativeComponent("RNCameraView")
+const RNDCameraView = requireNativeComponent("RNDCameraView")
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -34,7 +48,7 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <RNCameraView style={ styles.wrapper } />
+        <RNDCameraView style={ styles.wrapper } />
       </View>
     );
   }

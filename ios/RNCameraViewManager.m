@@ -9,26 +9,15 @@
 #import "React/RCTViewManager.h"
 #import "RNDeliverer-Swift.h"
 
-@interface RNCameraViewManager: RCTViewManager
+@interface RNDCameraViewManager: RCTViewManager
 @end
 
-@implementation RNCameraViewManager
+@implementation RNDCameraViewManager
 
 RCT_EXPORT_MODULE()
 
 - (UIView *) view {
-    CameraContainerView *view = [[CameraContainerView alloc] init];
-    
-    UILabel *label = [UILabel new];
-    label.text = @"bleee";
-    label.textColor = [UIColor redColor];
-    label.backgroundColor = [UIColor blueColor];
-    
-    view.frame = CGRectMake(0, 0, 300, 300);
-    label.frame = view.bounds;
-    label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
-    //[view addSubview:label];
+    CameraContainerView *view = [CameraContainerView new];
     
     return view;
 }

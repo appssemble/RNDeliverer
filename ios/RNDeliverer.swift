@@ -26,14 +26,21 @@ class RNDeliverer: NSObject {
         return true
     }
     
-    @objc(addEvent:location:)
-    func addEvent(name: String, location: String) -> Void {
-        // Date is ready to use!
-    }
-    
-    @objc(setupStreamer)
-    func setupStreamer() {
-        DelivererManager.shared.createCameraInput()
+    @objc(setupStreamer:)
+    func setupStreamer(completion:RCTResponseSenderBlock) {
+        // We use camera as input
+        do {
+            try DelivererManager.shared.createCameraInput()
+        } catch let error as CameraDeviceError {
+            switch error {
+            case .noDevice:
+                completion([RCTMakeError("No device, probably you are using a simulator", nil, nil)])
+                return
+            }
+        } catch {
+            completion([RCTMakeError("Some other device error", nil, nil)])
+            return
+        }
         
         if let cameraInput = cameraInput {
             // Add camera as input to the streamer
@@ -43,16 +50,14 @@ class RNDeliverer: NSObject {
             do {
                 try streamer.configure()
             } catch {
-                print("Failed to configure streamer")
+                completion([RCTMakeError("Failed to configure streamer", nil, nil)])
                 return
             }
+            
+            completion([NSNull()])
+        } else {
+            completion([RCTMakeError("Failed to configure streamer", nil, nil)])
         }
-    }
-    
-    @objc(startCamera)
-    func startCamera() {
-        // Start the camera
-        cameraInput?.startCamera()
     }
     
     @objc(startEncoding)
@@ -65,10 +70,16 @@ class RNDeliverer: NSObject {
         streamer.stopEncoding()
     }
     
-    @objc(addStreamingEndpoint:)
-    func addStreamingEndpoint(url:String) {
+    @objc(addStreamingEndpoint:completion:)
+    func addStreamingEndpoint(url:String, completion:RCTResponseSenderBlock) {
         let streamingEndpoint = StreamingEndpoint(url: url)
-        try! streamer.addStreamingEndpoint(endpoint: streamingEndpoint)
+        
+        do {
+            try streamer.addStreamingEndpoint(endpoint: streamingEndpoint)
+            completion([NSNull()])
+        } catch {
+            completion([RCTMakeError("Failed to add the streaming endpoint, please check your URL.", nil, nil)])
+        }
     }
     
     @objc(removeStreamingEndpoint:)

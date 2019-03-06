@@ -15,25 +15,12 @@ class DelivererManager: NSObject {
     let streamer = Deliverer()
     var cameraInput: CameraInput?
     
-    func createCameraInput() {
+    func createCameraInput() throws {
         guard cameraInput == nil else {
             return
         }
         
-        // We use camera as input
-        do {
-            cameraInput = try CameraInput.defaultCamera()
-        } catch let error as CameraDeviceError {
-            switch error {
-            case .noDevice:
-                print("No device, probably you are using a simulator")
-                return
-            }
-        } catch {
-            print("Some other device error")
-            return
-        }
-        
+        cameraInput = try CameraInput.defaultCamera()
         try? cameraInput?.setResolution(sessionPresent: .iFrame1280x720)
     }
     

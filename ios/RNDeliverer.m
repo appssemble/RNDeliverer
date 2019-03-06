@@ -10,10 +10,8 @@
 
 @interface RCT_EXTERN_MODULE(RNDeliverer, NSObject)
 
-RCT_EXTERN_METHOD(addEvent:(NSString *)name location:(NSString *)location)
-RCT_EXTERN_METHOD(setupStreamer)
-RCT_EXTERN_METHOD(startCamera)
-RCT_EXTERN_METHOD(addStreamingEndpoint:)
+RCT_EXTERN_METHOD(setupStreamer:(RCTResponseSenderBlock)callback)
+RCT_EXTERN_METHOD(addStreamingEndpoint:(NSString *)url completion:(RCTResponseSenderBlock)callback)
 RCT_EXTERN_METHOD(removeStreamingEndpoint:)
 RCT_EXTERN_METHOD(startEncoding)
 RCT_EXTERN_METHOD(stopEncoding)
