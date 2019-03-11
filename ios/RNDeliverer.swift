@@ -9,6 +9,11 @@
 import UIKit
 import Deliverer
 
+extension Notification.Name {
+    static let endpointDidStartStreamingNotification = Notification.Name("endpointDidStartStreamingNotification")
+    static let endpointDidStopStreamingNotification = Notification.Name("endpointDidStopStreamingNotification")
+}
+
 @objc(RNDeliverer)
 class RNDeliverer: NSObject {
     private var streamer: Deliverer {
@@ -75,6 +80,7 @@ class RNDeliverer: NSObject {
         let streamingEndpoint = StreamingEndpoint(url: url)
         
         do {
+            streamingEndpoint.delegate = self
             try streamer.addStreamingEndpoint(endpoint: streamingEndpoint)
             completion([NSNull()])
         } catch {
@@ -86,6 +92,19 @@ class RNDeliverer: NSObject {
     func removeStreamingEndpoint(url:String) {
         let streamingEndpoint = StreamingEndpoint(url: url)
         streamer.removeStreamingEndpoint(endpoint: streamingEndpoint)
+        streamingEndpoint.delegate = nil
+    }
+    
+}
+
+extension RNDeliverer: StreamingEndpointDelegate {
+    
+    func endpointDidStartStreaming(endpoint: StreamingEndpoint) {
+        NotificationCenter.default.post(name: .endpointDidStartStreamingNotification, object: nil, userInfo: ["url":endpoint.url])
+    }
+    
+    func endpointDidStopStreaming(endpoint: StreamingEndpoint) {
+        NotificationCenter.default.post(name: .endpointDidStopStreamingNotification, object: nil, userInfo: ["url":endpoint.url])
     }
     
 }
