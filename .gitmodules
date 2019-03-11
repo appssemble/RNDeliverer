@@ -1,0 +1,3 @@
+[submodule "Example/AwesomeProject/ios/Deliverer"]
+	path = Example/AwesomeProject/ios/Deliverer
+	url = https://github.com/appssemble/Deliverer-Swift
