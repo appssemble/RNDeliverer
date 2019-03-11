@@ -9,9 +9,30 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import {NativeModules} from 'react-native';
+import {NativeEventEmitter, NativeModules} from 'react-native';
 import { requireNativeComponent } from 'react-native';
 import { TouchableOpacity } from 'react-native';
+
+const { RNDNotifications } = NativeModules;
+
+const delivererEmitter = new NativeEventEmitter(RNDNotifications);
+
+const subscription = delivererEmitter.addListener(
+  'EventEndpointDidStartStreaming',
+  (endpoint) => console.log(endpoint.url)
+);
+
+const subscription2 = delivererEmitter.addListener(
+  'EventEndpointDidStopStreaming',
+  (endpoint) => console.error(endpoint.url)
+);
+
+const instructions = Platform.select({
+  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
+  android:
+    'Double tap R on your keyboard to reload,\n' +
+    'Shake or press menu button for dev menu',
+});
 
 var RNDeliverer = NativeModules.RNDeliverer;
 var RNDCamera = NativeModules.RNDCamera;
@@ -35,13 +56,6 @@ RNDeliverer.addStreamingEndpoint('rtmp://a.rtmp.youtube.com/live2/1jhu-vp8x-p1u8
 RNDeliverer.startEncoding()
 
 const RNDCameraView = requireNativeComponent("RNDCameraView")
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
 type Props = {};
 export default class App extends Component<Props> {
