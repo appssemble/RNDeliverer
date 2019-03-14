@@ -2,6 +2,7 @@
 # React Native Deliverer
 
 React native wrapper for Deliverer library.
+You can get the iOS library from [here](https://github.com/appssemble/Deliverer-Swift)
 
 ### Mostly automatic installation
 
