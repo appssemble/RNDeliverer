@@ -1,9 +1,7 @@
 
-# react-native-deliverer
+# React Native Deliverer
 
-## Getting started
-
-`$ npm install react-native-deliverer --save`
+React native wrapper for Deliverer library.
 
 ### Mostly automatic installation
 
