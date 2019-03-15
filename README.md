@@ -4,9 +4,23 @@
 React native wrapper for Deliverer library.
 You can get the iOS library from [here](https://github.com/appssemble/Deliverer-Swift)
 
+### Prerequisites
+
+This is project is just the react native wrapper for Deliverer native libraries so for it to work you must integrate the native libraries in your android and iOS projects. Bellow are references on how to do this.
+
+#### iOS
+Please follow the installation instructions from [swift SDK](https://github.com/appssemble/Deliverer-Swift) to add the Deliverer SDK to your iOS project.
+
+### Installation
+
+After native SDKs are integrated you are ready to add the react native wrapper using one of the method below.
+
 ### Mostly automatic installation
 
-`$ react-native link react-native-deliverer`
+```
+$ npm install react-native-deliverer --save
+$ react-native link react-native-deliverer
+```
 
 ### Manual installation
 
