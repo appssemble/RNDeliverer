@@ -15,14 +15,14 @@ Please follow the installation instructions from [swift SDK](https://github.com/
 
 After native SDKs are integrated you are ready to add the react native wrapper using one of the method below.
 
-### Mostly automatic installation
+#### Mostly automatic installation
 
 ```
 $ npm install react-native-deliverer --save
 $ react-native link react-native-deliverer
 ```
 
-### Manual installation
+#### Manual installation
 
 
 #### iOS
