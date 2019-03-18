@@ -10,6 +10,7 @@ This is project is just the react native wrapper for Deliverer native libraries 
 
 #### iOS
 Please follow the installation instructions from [swift SDK](https://github.com/appssemble/Deliverer-Swift) to add the Deliverer SDK to your iOS project.
+Also make sure your project is properly configured to use swift. This usually means you must create a new swift file in your project and allow the creation of the bridging header.
 
 ### Installation
 
@@ -32,7 +33,7 @@ $ react-native link react-native-deliverer
 3. In XCode, in the project navigator, select your project. Add `libRNDeliverer.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. Run your project (`Cmd+R`)<
 
-#### Android
+#### Android (TODO)
 
 1. Open up `android/app/src/main/java/[...]/MainActivity.java`
   - Add `import com.reactlibrary.RNDelivererPackage;` to the imports at the top of the file
@@ -47,20 +48,79 @@ $ react-native link react-native-deliverer
       compile project(':react-native-deliverer')
   	```
 
-#### Windows
-[Read it! :D](https://github.com/ReactWindows/react-native)
 
-1. In Visual Studio add the `RNDeliverer.sln` in `node_modules/react-native-deliverer/windows/RNDeliverer.sln` folder to their solution, reference from their app.
-2. Open up your `MainPage.cs` app
-  - Add `using Deliverer.RNDeliverer;` to the usings at the top of the file
-  - Add `new RNDelivererPackage()` to the `List<IReactPackage>` returned by the `Packages` method
+## Quick Start
 
+### 1. Import required classes
 
-## Usage
 ```javascript
-import RNDeliverer from 'react-native-deliverer';
 
-// TODO: What to do with the module?
-RNDeliverer;
+import {NativeEventEmitter, NativeModules} from 'react-native';
+
 ```
-  
+
+### 2. Configure the streamer
+
+```javascript
+
+var RNDeliverer = NativeModules.RNDeliverer;
+
+RNDeliverer.setupStreamer((error) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('Successfully configured');
+  }
+});
+
+```
+
+### 3. Start the camera
+
+```javascript
+
+var RNDCamera = NativeModules.RNDCamera;
+RNDCamera.startCamera()
+
+```
+
+### 4. Add a streaming endpoint
+
+```javascript
+
+RNDeliverer.addStreamingEndpoint('rtmp://35.167.100.26:1935/live/test', (error) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('Successfully added the streaming endpoint');
+  }
+});
+
+```
+
+### 6. Start the encoding
+
+```javascript
+
+RNDeliverer.startEncoding()
+
+```
+
+### 6. Add the camera view to your view hierarchy
+
+```javascript
+
+const RNDCameraView = requireNativeComponent("RNDCameraView")
+
+...
+
+  render() {
+    return (
+      <View style={styles.container}>
+        ...
+        <RNDCameraView style={ styles.wrapper } />
+      </View>
+    );
+  }
+
+```
