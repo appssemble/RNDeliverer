@@ -106,7 +106,7 @@ RNDeliverer.startEncoding()
 
 ```
 
-### 6. Add the camera view to your view hierarchy
+### 7. Add the camera view to your view hierarchy
 
 ```javascript
 
