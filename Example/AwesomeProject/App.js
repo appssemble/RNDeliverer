@@ -24,7 +24,17 @@ const subscription = delivererEmitter.addListener(
 
 const subscription2 = delivererEmitter.addListener(
   'EventEndpointDidStopStreaming',
-  (endpoint) => console.error(endpoint.url)
+  (endpoint) => console.log(endpoint.url)
+);
+
+const subscription3 = delivererEmitter.addListener(
+  'EventVideoQualityChanged',
+  (endpoint) => console.log(endpoint.quality)
+);
+
+const subscription4 = delivererEmitter.addListener(
+  'EventAudioQualityChanged',
+  (endpoint) => console.log(endpoint.quality)
 );
 
 const instructions = Platform.select({
@@ -46,6 +56,8 @@ RNDeliverer.setupStreamer((error) => {
 });
 
 RNDCamera.startCamera()
+
+RNDeliverer.adaptiveBitrate('regular')
 RNDeliverer.addStreamingEndpoint('rtmp://a.rtmp.youtube.com/live2/1jhu-vp8x-p1u8-axev', (error) => {
   if (error) {
     console.error(error);

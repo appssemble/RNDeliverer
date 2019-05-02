@@ -11,6 +11,9 @@
 #define kEndpointDidStartStreamingNotification @"endpointDidStartStreamingNotification"
 #define kEndpointDidStopStreamingNotification @"endpointDidStopStreamingNotification"
 
+#define kDidChangeVideoQualityNotification @"didChangeVideoQualityNotification"
+#define kDidChangeAudioQualityNotification @"didChangeAudioQualityNotification"
+
 @implementation RNDNotifications {
     bool hasListeners;
 }
@@ -18,7 +21,7 @@
 RCT_EXPORT_MODULE();
 
 - (NSArray<NSString *> *)supportedEvents {
-    return @[@"EventEndpointDidStartStreaming", @"EventEndpointDidStopStreaming"];
+    return @[@"EventEndpointDidStartStreaming", @"EventEndpointDidStopStreaming", @"EventVideoQualityChanged", @"EventAudioQualityChanged"];
 }
 
 // Will be called when this module's first listener is added.
@@ -27,6 +30,9 @@ RCT_EXPORT_MODULE();
     
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(endpointDidStartStreamingReceived:) name:kEndpointDidStartStreamingNotification object:nil];
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(endpointDidStopStreamingReceived:) name:kEndpointDidStopStreamingNotification object:nil];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(didChangeVideoQualityReceived:) name:kDidChangeVideoQualityNotification object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(didChangeAudioQualityReceived:) name:kDidChangeAudioQualityNotification object:nil];
 }
 
 // Will be called when this module's last listener is removed, or on dealloc.
@@ -44,6 +50,16 @@ RCT_EXPORT_MODULE();
 - (void)endpointDidStopStreamingReceived:(NSNotification *)notification {
     NSString *url = notification.userInfo[@"url"];
     [self sendEventWithName:@"EventEndpointDidStopStreaming" body:@{@"url": url}];
+}
+
+- (void)didChangeVideoQualityReceived:(NSNotification *)notification {
+    NSString *quality = notification.userInfo[@"quality"];
+    [self sendEventWithName:@"EventVideoQualityChanged" body:@{@"quality": quality}];
+}
+
+- (void)didChangeAudioQualityReceived:(NSNotification *)notification {
+    NSString *quality = notification.userInfo[@"quality"];
+    [self sendEventWithName:@"EventAudioQualityChanged" body:@{@"quality": quality}];
 }
 
 @end

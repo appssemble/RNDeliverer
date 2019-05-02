@@ -12,6 +12,9 @@ import Deliverer
 extension Notification.Name {
     static let endpointDidStartStreamingNotification = Notification.Name("endpointDidStartStreamingNotification")
     static let endpointDidStopStreamingNotification = Notification.Name("endpointDidStopStreamingNotification")
+    
+    static let didChangeVideoQualityNotification = Notification.Name("didChangeVideoQualityNotification")
+    static let didChangeAudioQualityNotification = Notification.Name("didChangeAudioQualityNotification")
 }
 
 @objc(RNDeliverer)
@@ -33,6 +36,8 @@ class RNDeliverer: NSObject {
     
     @objc(setupStreamer:)
     func setupStreamer(completion:RCTResponseSenderBlock) {
+        streamer.adaptiveBitrateDelegate = self
+        
         // We use camera as input
         do {
             try DelivererManager.shared.createCameraInput()
@@ -95,6 +100,27 @@ class RNDeliverer: NSObject {
         streamingEndpoint.delegate = nil
     }
     
+    @objc(adaptiveBitrate:)
+    func adaptiveBitrate(adaptiveBitrate:String) {
+        var adaptiveState: AdaptiveBitrate? = nil
+        
+        switch adaptiveBitrate {
+        case "disabled":
+            adaptiveState = .disabled
+        case "laidback":
+            adaptiveState = .laidback
+        case "regular":
+            adaptiveState = .regular
+        case "aggresive":
+            adaptiveState = .aggresive
+        default:
+            break
+        }
+        
+        if let adaptiveState = adaptiveState {
+            streamer.adaptiveBitrate = adaptiveState
+        }
+    }
 }
 
 extension RNDeliverer: StreamingEndpointDelegate {
@@ -105,6 +131,18 @@ extension RNDeliverer: StreamingEndpointDelegate {
     
     func endpointDidStopStreaming(endpoint: StreamingEndpoint) {
         NotificationCenter.default.post(name: .endpointDidStopStreamingNotification, object: nil, userInfo: ["url":endpoint.url])
+    }
+    
+}
+
+extension RNDeliverer: AdaptiveBitrateDelegate {
+
+    func didChangeVideoQuality(quality: StreamQuality) {
+        NotificationCenter.default.post(name: .didChangeVideoQualityNotification, object: nil, userInfo: ["quality":quality.string])
+    }
+    
+    func didChangeAudioQuality(quality: StreamQuality) {
+        NotificationCenter.default.post(name: .didChangeAudioQualityNotification, object: nil, userInfo: ["quality":quality.string])
     }
     
 }

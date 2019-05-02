@@ -13,7 +13,8 @@
 RCT_EXTERN_METHOD(startCamera)
 RCT_EXTERN_METHOD(setResolution:)
 RCT_EXTERN_METHOD(setPosition:)
-RCT_EXTERN_METHOD(setOrientation:)
+RCT_EXTERN_METHOD(setCameraOrientation:)
+RCT_EXTERN_METHOD(setStreamOrientation:)
 
 - (dispatch_queue_t)methodQueue
 {

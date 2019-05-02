@@ -66,8 +66,8 @@ class RNDCamera: NSObject {
         }
     }
     
-    @objc(setOrientation:)
-    func setOrientation(orientation:String) {
+    @objc(setCameraOrientation:)
+    func setCameraOrientation(orientation:String) {
         var cameraOrientation: AVCaptureVideoOrientation? = nil
         
         switch orientation {
@@ -84,7 +84,29 @@ class RNDCamera: NSObject {
         }
         
         if let cameraOrientation = cameraOrientation {
-            cameraInput?.setOrientation(orientation: cameraOrientation)
+            cameraInput?.setCameraOrientation(orientation: cameraOrientation)
+        }
+    }
+    
+    @objc(setStreamOrientation:)
+    func setStreamOrientation(orientation:String) {
+        var cameraOrientation: AVCaptureVideoOrientation? = nil
+        
+        switch orientation {
+        case "portrait":
+            cameraOrientation = .portrait
+        case "portraitUpsideDown":
+            cameraOrientation = .portraitUpsideDown
+        case "landscapeRight", "landscape":
+            cameraOrientation = .landscapeRight
+        case "landscapeLeft":
+            cameraOrientation = .landscapeLeft
+        default:
+            break
+        }
+        
+        if let cameraOrientation = cameraOrientation {
+            try? cameraInput?.setStreamOrientation(orientation: cameraOrientation)
         }
     }
     

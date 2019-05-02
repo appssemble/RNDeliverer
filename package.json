@@ -1,17 +1,25 @@
 {
   "name": "react-native-deliverer",
-  "version": "1.0.1",
-  "description": "",
+  "version": "1.0.2",
+  "description": "React native wrapper for Deliverer, an easy to use library for live streaming to social media and content platforms such as Youtube, Facebook, Twitch, Periscope or on CDNS such as Wowza, Azure, AWS Elemental MediaLive or on your custom RTMP server based on nginx, red5, unreal media server and many more.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "react-native"
+    "react-native", "react-native-deliverer", "deliverer"
   ],
-  "author": "",
-  "license": "",
+  "author": "appssemble",
+  "license": "Apache Public License v2",
   "peerDependencies": {
     "react-native": "0.58.5"
+  },
+  "homepage": "https://github.com/appssemble/RNDeliverer/blob/master/README.md",
+  "repository": {
+        "type": "git",
+        "url": "git+https://github.com/appssemble/RNDeliverer.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

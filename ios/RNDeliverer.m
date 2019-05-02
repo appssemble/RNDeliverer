@@ -15,6 +15,7 @@ RCT_EXTERN_METHOD(addStreamingEndpoint:(NSString *)url completion:(RCTResponseSe
 RCT_EXTERN_METHOD(removeStreamingEndpoint:)
 RCT_EXTERN_METHOD(startEncoding)
 RCT_EXTERN_METHOD(stopEncoding)
+RCT_EXTERN_METHOD(adaptiveBitrate:)
 
 - (dispatch_queue_t)methodQueue
 {
