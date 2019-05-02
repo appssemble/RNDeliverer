@@ -140,6 +140,8 @@ RNDCamera.setCameraOrientation('portrait')
 // 'portrait' 'portraitUpsideDown' 'landscapeRight' 'landscape' 'landscapeLeft'
 RNDCamera.setStreamOrientation('portrait')
 
+RNDCamera.autorotate(true)
+
 ```
 
 ### 8. Adaptive bitrate
