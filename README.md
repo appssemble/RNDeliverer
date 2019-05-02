@@ -98,7 +98,7 @@ RNDeliverer.addStreamingEndpoint('rtmp://35.167.100.26:1935/live/test', (error) 
 
 ```
 
-### 6. Start the encoding
+### 5. Start the encoding
 
 ```javascript
 
@@ -106,7 +106,7 @@ RNDeliverer.startEncoding()
 
 ```
 
-### 7. Add the camera view to your view hierarchy
+### 6. Add the camera view to your view hierarchy
 
 ```javascript
 
@@ -122,5 +122,46 @@ const RNDCameraView = requireNativeComponent("RNDCameraView")
       </View>
     );
   }
+
+```
+
+### 7. Camera options
+
+```javascript
+// '480p' '720p' '1080p' '4k'
+RNDCamera.setResolution('720p')
+
+// 'front' 'back'
+RNDCamera.setPosition('front')
+
+// 'portrait' 'portraitUpsideDown' 'landscapeRight' 'landscape' 'landscapeLeft'
+RNDCamera.setCameraOrientation('portrait')
+
+// 'portrait' 'portraitUpsideDown' 'landscapeRight' 'landscape' 'landscapeLeft'
+RNDCamera.setStreamOrientation('portrait')
+
+```
+
+### 8. Adaptive bitrate
+Configure adaptive bitrate
+
+```javascript
+// 'disabled' 'laidback' 'regular' 'agressive'
+RNDeliverer.adaptiveBitrate('regular')
+
+```
+
+Get quality changes feedback
+
+```javascript
+const subscription3 = delivererEmitter.addListener(
+  'EventVideoQualityChanged',
+  (endpoint) => console.log(endpoint.quality)
+);
+
+const subscription4 = delivererEmitter.addListener(
+  'EventAudioQualityChanged',
+  (endpoint) => console.log(endpoint.quality)
+);
 
 ```
