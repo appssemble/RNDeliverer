@@ -110,4 +110,9 @@ class RNDCamera: NSObject {
         }
     }
     
+    @objc(autorotate:)
+    func autorotate(autorotate:Bool) {
+        cameraInput?.autorotate = autorotate
+    }
+    
 }
